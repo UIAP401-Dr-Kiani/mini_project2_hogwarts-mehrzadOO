@@ -1,35 +1,37 @@
 ﻿using System;
+using System.IO;
+using System.Linq;
 
 namespace MyProject02
 {
     internal class Program
     {
+        
         public static void StudentMainPage()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Hello student.please login:)");
             Console.ResetColor();
-            Console.WriteLine("1. signin (i)");
-            Console.WriteLine("2. signup (u)");
             try
             {
-                string StudentMainInpute = Console.ReadLine();
-                if (StudentMainInpute == "i")
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.Write("Please enter your username : ");
+                string UsernameStudentInpute = Console.ReadLine();
+                Console.Write("Please enter your password : ");
+                string PassStudentInpute = Console.ReadLine();
+                Console.ResetColor();
+                using (StreamReader file = new StreamReader("file.json"))
                 {
-                    Console.Clear();
+                    string ln;
+                    while ((ln = file.ReadLine()) != null)
+                    {
+                        string[] human = ln.Split('\t').ToArray<string>();
+                        
+                    }
                 }
-                else if (StudentMainInpute == "u")
-                {
-                    Console.Clear();
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("You enter wrong key:( please enter true key:)");
-                    Console.ResetColor();
-                    StudentMainPage();
-                }
+
+                
+
             }
             catch (FormatException)
             {
@@ -89,7 +91,8 @@ namespace MyProject02
             }
         }
         public static void Main(string[] args) {
-            MainPage();   
+            MainPage();
+            Console.WriteLine();
         }
     }
 }
