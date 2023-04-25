@@ -3,20 +3,16 @@ using System.Collections.Generic;
 namespace MyProject02
 {
     public class AuthorizedPersons : human {
-        private string RoomNumber { get; set; }
-        private string Curriculum { get; set; }
-        private enum Pet {
-            Rat,cat,Owl
-        }
+        public string RoomNumber { get; set; }
+        public string Curriculum { get; set; }
+        public string Pet { get; set; }
         
 
-        private bool baggage { get; set; }
+        public bool baggage { get; set; }
 
-        enum Role {
-            Teacher , Student
-        }
+        public string role { get; set; } 
 
-        private List<string> ReceivedLetter = new List<string>();
+        public List<string> ReceivedLetter = new List<string>();
 
     }
 }

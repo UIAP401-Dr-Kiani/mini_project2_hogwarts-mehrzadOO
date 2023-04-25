@@ -1,11 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MyProject02
 {
     internal class Program
     {
+
+        public static void DumbeldorMainPage()
+        {
+           
+        }
+        public static void StudentSigninPage()
+        {
+            
+        }
+        public static List<AuthorizedPersons> StudentFile()
+        {
+            dynamic StudentJsonFile =
+                JsonConvert.DeserializeObject<List<AuthorizedPersons>>(File.ReadAllText("JSON_DATA.json"));
+            return StudentJsonFile;
+        }
         
         public static void StudentMainPage()
         {
@@ -20,17 +38,31 @@ namespace MyProject02
                 Console.Write("Please enter your password : ");
                 string PassStudentInpute = Console.ReadLine();
                 Console.ResetColor();
-                using (StreamReader file = new StreamReader("file.json"))
+                List<AuthorizedPersons> authorizedPersons = StudentFile();
+                int count = 0;
+                for (int i = 0; i < authorizedPersons.Count; i++)
                 {
-                    string ln;
-                    while ((ln = file.ReadLine()) != null)
+                    if (authorizedPersons[i].userName == UsernameStudentInpute && authorizedPersons[i].password == PassStudentInpute)
                     {
-                        string[] human = ln.Split('\t').ToArray<string>();
-                        
+                        Console.WriteLine("It works true.");
+                        count++;
+                        break;
                     }
+                    
                 }
 
-                
+                if (count == 0)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You enter wrong username or pass!");
+                    Console.ResetColor();
+                    StudentMainPage();
+                    
+                }
+
+
+
 
             }
             catch (FormatException)
@@ -43,9 +75,43 @@ namespace MyProject02
                 
             }
         }
-        public static void DambeldorPage()
+        public static void DumbeldorEnterPage()
         {
-            
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Hello admin.");
+            try
+            {
+                Console.Write("Pleaase enter your username :");
+                string UserNameDumbel = Console.ReadLine();
+                Console.Write("Please enter your password :");
+                string PassDumbel = Console.ReadLine();
+                Console.ResetColor();
+                if(UserNameDumbel == Dumbeldor.UserDumbel && PassDumbel == Dumbeldor.passdumbel)
+                {
+                    Console.Clear();
+                    Console.WriteLine("its work.");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Excuse me.You enter wrong pass or usename.Please enter again");
+                    Console.ResetColor();
+                    DumbeldorEnterPage();
+
+                }
+
+            }
+            catch(FormatException)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Excuse me.You enter wrong pass or usename.Please enter again");
+                Console.ResetColor();
+                DumbeldorEnterPage();
+            }
+
+
         }
         public static void MainPage()
         {
@@ -63,6 +129,7 @@ namespace MyProject02
                 if (MainInpute == "d")
                 {
                     Console.Clear();
+                    DumbeldorEnterPage();
                 }
                 else if (MainInpute == "t") 
                 {

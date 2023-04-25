@@ -5,3 +5,7 @@ D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\obj\Debug\MyProject02.cspr
 D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\obj\Debug\MyProject02.csproj.CoreCompileInputs.cache
 D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\obj\Debug\MyProject02.exe
 D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\obj\Debug\MyProject02.pdb
+D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\bin\Debug\MyProject02.exe.config
+D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\bin\Debug\Newtonsoft.Json.dll
+D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\bin\Debug\Newtonsoft.Json.xml
+D:\rider\mini_project2_hogwarts-mehrzadOO\MyProject02\obj\Debug\MyProject02.csproj.CopyComplete

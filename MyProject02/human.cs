@@ -1,18 +1,14 @@
 namespace MyProject02
 {
     public class human {
-        private string FirstName { get; set; }
-        private string LaastName { get; set; }
-        private string BirhDay { get; set; }
-        private enum Gender {
-            Man,Woman
-        }
-        private string Father { get; set; }
-        private string UserName { get; set; }
-        private string Password { get; set; }
-        private enum BreedType {
-            HalfBlood,PureBlood,MuggleBlood
-        }
+        public string name { get; set; }
+        public string family { get; set; }
+        public string dateOfBirth { get; set; }
+        public string gender { get; set; }
+        public string father { get; set; }
+        public string userName { get; set; }
+        public string password { get; set; }
+        public string type { get; set; }
 
          
     }
