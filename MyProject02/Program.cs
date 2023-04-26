@@ -10,8 +10,41 @@ namespace MyProject02
     internal class Program
     {
 
-        public static void StudentLesson()
+        public static void StudentMainPage()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Welcome to calss.");
+            Console.ResetColor();
+            try
+            {
+                Console.WriteLine("1.Go to class of lesson (c)");
+                Console.WriteLine("2.Go to massage box (m)");
+                string StudentInput = Console.ReadLine();
+                if(StudentInput == "c")
+                {
+                    Console.Clear();
+                    Console.WriteLine("yes");
+                }
+                if(StudentInput == "m")
+                {
+                    Console.Clear();
+                    Console.WriteLine("yes");
+                }
+                /*else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You enter wrong key!Pleaase try again");
+                    Console.ResetColor();
+                    StudentMainPage();
+                }*/
+            }
+            catch (FormatException)
+            {
+                Console.Clear();
+                Console.WriteLine("You enter wrong key!Pleaase try again");
+                StudentMainPage();
+            }
 
         }
         public static void DumbeldorLetter()
@@ -80,7 +113,7 @@ namespace MyProject02
             return StudentJsonFile;
         }
         
-        public static void StudentMainPage()
+        public static void StudentEnterPage()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Hello student.please login:)");
@@ -97,9 +130,10 @@ namespace MyProject02
                 int count = 0;
                 for (int i = 0; i < authorizedPersons.Count; i++)
                 {
-                    if (authorizedPersons[i].userName == UsernameStudentInpute && authorizedPersons[i].password == PassStudentInpute)
+                    if (authorizedPersons[i].username == UsernameStudentInpute && authorizedPersons[i].password == PassStudentInpute)
                     {
-                        Console.WriteLine("It works true.");
+                        Console.Clear();
+                        StudentMainPage();
                         count++;
                         break;
                     }
@@ -112,7 +146,7 @@ namespace MyProject02
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You enter wrong username or pass!");
                     Console.ResetColor();
-                    StudentMainPage();
+                    StudentEnterPage();
                     
                 }
 
@@ -126,7 +160,7 @@ namespace MyProject02
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("You enter wrong key:( please enter true key:)");
                 Console.ResetColor();
-                StudentMainPage();
+                StudentEnterPage();
                 
             }
         }
@@ -193,7 +227,7 @@ namespace MyProject02
                 else if (MainInpute == "s")
                 {
                     Console.Clear();
-                    StudentMainPage();
+                    StudentEnterPage();
                 }
                 else
                 {
