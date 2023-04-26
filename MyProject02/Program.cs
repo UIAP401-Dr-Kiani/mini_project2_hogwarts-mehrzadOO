@@ -23,7 +23,10 @@ namespace MyProject02
                 string DateLetter = Console.ReadLine();
                 Console.WriteLine("Letters");
                 string Letters = Console.ReadLine();
-
+                using (var Writer = new StreamWriter("Massage.txt"))
+                {
+                    Writer.WriteLine(TrainNumber + " " + DateLetter + " " + Letters);
+                }
             }
             catch (FormatException)
             {
