@@ -10,8 +10,56 @@ namespace MyProject02
     internal class Program
     {
 
+        public static void DumbeldorLetter()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Please compleate every field.");
+            Console.ResetColor();
+            try
+            {
+                Console.Write("* Train Number :");
+                string TrainNumber = Console.ReadLine();
+                Console.Write("* Date Letter :");
+                string DateLetter = Console.ReadLine();
+                Console.WriteLine("Letters");
+                string Letters = Console.ReadLine();
+
+            }
+            catch (FormatException)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please try again and write true.");
+                Console.ResetColor();
+                DumbeldorLetter();
+
+            }
+        }
         public static void DumbeldorMainPage()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Welcom dumbeldor.");
+            Console.ResetColor();
+            Console.WriteLine("What do you want to do?");
+            try
+            {
+                Console.WriteLine("1.Send letters to student (s) ");
+                string DumbeldorInpute = Console.ReadLine();
+                if(DumbeldorInpute == "s")
+                {
+                    Console.Clear();
+                    DumbeldorLetter();
+
+                }
+
+            }
+            catch (FormatException) 
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Dumbeldor, you enter wrong key.please try again.thanck you.");
+                Console.ResetColor();
+                DumbeldorMainPage();
+            }
            
         }
         public static void StudentSigninPage()
@@ -79,6 +127,7 @@ namespace MyProject02
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Hello admin.");
+            Console.ResetColor();
             try
             {
                 Console.Write("Pleaase enter your username :");
@@ -89,7 +138,7 @@ namespace MyProject02
                 if(UserNameDumbel == Dumbeldor.UserDumbel && PassDumbel == Dumbeldor.passdumbel)
                 {
                     Console.Clear();
-                    Console.WriteLine("its work.");
+                    DumbeldorMainPage();
                 }
                 else
                 {
@@ -117,12 +166,11 @@ namespace MyProject02
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Welcome to hogwarts school:)");
+            Console.WriteLine("Please go to your panel:)");
             Console.ResetColor();
             Console.WriteLine("1. Dambeldor (d)");
             Console.WriteLine("2. Teacher (t)");
             Console.WriteLine("3. Student (s)");
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Please go to your panel:)");
             try
             {
                 string MainInpute = Console.ReadLine();
