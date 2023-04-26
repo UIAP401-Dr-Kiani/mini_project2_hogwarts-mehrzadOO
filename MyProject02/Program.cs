@@ -10,6 +10,10 @@ namespace MyProject02
     internal class Program
     {
 
+        public static void StudentLesson()
+        {
+
+        }
         public static void DumbeldorLetter()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
