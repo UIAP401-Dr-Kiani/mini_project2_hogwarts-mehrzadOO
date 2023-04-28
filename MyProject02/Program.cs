@@ -10,34 +10,102 @@ namespace MyProject02
     internal class Program
     {
 
-        public static void StudentMainPage()
+        public static void SinhinPage()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Welcome to calss.");
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Please signin.");
             Console.ResetColor();
             try
             {
-                Console.WriteLine("1.Go to class of lesson (c)");
+                Console.Write("Username :");
+                string UsernameInpute = Console.ReadLine();
+                Console.Write("Password :");
+                string PasswordInpute = Console.ReadLine();
+                List<AuthorizedPersons> Siginname = StudentFile();
+                int index = 0;
+                int count = 0;
+                for (int i = 0; i < Siginname.Count; i++)
+                {
+                    if (Siginname[i].username == UsernameInpute && Siginname[i].password == PasswordInpute) 
+                    {
+                        count++;
+                        index = i;
+                        break;
+                    }
+                }
+                if(count == 1)
+                {
+                    if (Siginname[index].role == "teacher")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("im t.");
+
+                    }
+                    else if (Siginname[index].role == "student")
+                    {
+                        Console.Clear();
+                        StudentMainPage();
+
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You enter wrong username or password.Please try agian.");
+                    Console.ResetColor();
+                    SinhinPage();
+                }
+            }
+            catch (FormatException) 
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You enter wrong username or password.Please try agian.");
+                Console.ResetColor();
+                SinhinPage();
+
+            }
+        }
+        public static void StudentHomeWorkPage()
+        {
+           
+
+        }
+        public static void StudentMainPage()
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Welcome to Student page.");
+            Console.ResetColor();
+            try
+            {
+                Console.WriteLine("1.Go to home work page (h)");
                 Console.WriteLine("2.Go to massage box (m)");
+                Console.WriteLine("3.Exit(e)");
                 string StudentInput = Console.ReadLine();
-                if(StudentInput == "c")
+                if(StudentInput == "h")
+                {
+                    Console.Clear();
+                    StudentHomeWorkPage();
+                }
+                else if(StudentInput == "m")
                 {
                     Console.Clear();
                     Console.WriteLine("yes");
                 }
-                if(StudentInput == "m")
+                else if(StudentInput == "e")
                 {
                     Console.Clear();
-                    Console.WriteLine("yes");
+                    MainPage();
                 }
-                /*else
+                else
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("You enter wrong key!Pleaase try again");
                     Console.ResetColor();
                     StudentMainPage();
-                }*/
+                }
             }
             catch (FormatException)
             {
@@ -64,6 +132,11 @@ namespace MyProject02
                 {
                     Writer.WriteLine(TrainNumber + " " + DateLetter + " " + Letters);
                 }
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Your massage saved.");
+                Console.ResetColor();
+                DumbeldorMainPage();
             }
             catch (FormatException)
             {
@@ -102,67 +175,11 @@ namespace MyProject02
             }
            
         }
-        public static void StudentSigninPage()
-        {
-            
-        }
         public static List<AuthorizedPersons> StudentFile()
         {
             dynamic StudentJsonFile =
                 JsonConvert.DeserializeObject<List<AuthorizedPersons>>(File.ReadAllText("JSON_DATA.json"));
             return StudentJsonFile;
-        }
-        
-        public static void StudentEnterPage()
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Hello student.please login:)");
-            Console.ResetColor();
-            try
-            {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.Write("Please enter your username : ");
-                string UsernameStudentInpute = Console.ReadLine();
-                Console.Write("Please enter your password : ");
-                string PassStudentInpute = Console.ReadLine();
-                Console.ResetColor();
-                List<AuthorizedPersons> authorizedPersons = StudentFile();
-                int count = 0;
-                for (int i = 0; i < authorizedPersons.Count; i++)
-                {
-                    if (authorizedPersons[i].username == UsernameStudentInpute && authorizedPersons[i].password == PassStudentInpute)
-                    {
-                        Console.Clear();
-                        StudentMainPage();
-                        count++;
-                        break;
-                    }
-                    
-                }
-
-                if (count == 0)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("You enter wrong username or pass!");
-                    Console.ResetColor();
-                    StudentEnterPage();
-                    
-                }
-
-
-
-
-            }
-            catch (FormatException)
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("You enter wrong key:( please enter true key:)");
-                Console.ResetColor();
-                StudentEnterPage();
-                
-            }
         }
         public static void DumbeldorEnterPage()
         {
@@ -209,9 +226,8 @@ namespace MyProject02
             Console.WriteLine("Welcome to hogwarts school:)");
             Console.WriteLine("Please go to your panel:)");
             Console.ResetColor();
-            Console.WriteLine("1. Dambeldor (d)");
-            Console.WriteLine("2. Teacher (t)");
-            Console.WriteLine("3. Student (s)");
+            Console.WriteLine("1. Dambeldor page (d)");
+            Console.WriteLine("2. Singnin (s)");
             try
             {
                 string MainInpute = Console.ReadLine();
@@ -220,14 +236,10 @@ namespace MyProject02
                     Console.Clear();
                     DumbeldorEnterPage();
                 }
-                else if (MainInpute == "t") 
-                {
-                    Console.Clear();
-                }
                 else if (MainInpute == "s")
                 {
                     Console.Clear();
-                    StudentEnterPage();
+                    SinhinPage();
                 }
                 else
                 {
