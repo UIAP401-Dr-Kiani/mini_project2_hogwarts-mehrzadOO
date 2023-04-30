@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Permissions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -10,6 +11,93 @@ namespace MyProject02
     internal class Program
     {
 
+        public static void TeacherChoosePage()
+        {
+            try
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Please write your username. ");
+                Console.ResetColor();
+                string UsernameInpute = Console.ReadLine();
+                List<AuthorizedPersons> Siginname = StudentFile();
+                int index = 0;
+                for (int i = 0; i<Siginname.Count; i++)
+                {
+                    if(UsernameInpute == Siginname[i].username)
+                    {
+                        index = i;
+                    }
+                }
+                var SiginameArray = Siginname.ToArray();
+                
+
+
+            }
+            
+        }
+        public static void TeacherPage()
+        {
+            Console.WriteLine("1.Choose lesson and time(c)");
+            try
+            {
+                string TeacherInpute = Console.ReadLine();
+                if (TeacherInpute == "c")
+                {
+                    Console.Clear();
+
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You enter wrong key please try again.");
+                    Console.ResetColor();
+                    TeacherPage();
+                }
+            }
+            catch (FormatException) 
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You enter wrong key please try again.");
+                Console.ResetColor();
+                TeacherPage();
+            }
+            
+
+        }
+        public static void StudentReadMassge()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("This is your massage.");
+            Console.ResetColor();
+            string readtxet = File.ReadAllText("Massage.txt");
+            Console.WriteLine(readtxet);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("If you want to go to student page press 'e'.");
+            Console.ResetColor();
+            try
+            {
+                string MassageInpute = Console.ReadLine();
+                if (MassageInpute == "e")
+                {
+                    Console.Clear();
+                    StudentMainPage();
+                }
+                else
+                {
+                    Console.Clear();
+                    StudentReadMassge();
+                }
+
+
+            }
+            catch (FormatException) 
+            {
+                Console.Clear();
+                StudentReadMassge();
+            }
+        }
         public static void SinhinPage()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -22,7 +110,7 @@ namespace MyProject02
                 Console.Write("Password :");
                 string PasswordInpute = Console.ReadLine();
                 List<AuthorizedPersons> Siginname = StudentFile();
-                int index = 0;
+                public int index = 0;
                 int count = 0;
                 for (int i = 0; i < Siginname.Count; i++)
                 {
@@ -38,12 +126,16 @@ namespace MyProject02
                     if (Siginname[index].role == "teacher")
                     {
                         Console.Clear();
-                        Console.WriteLine("im t.");
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"Welcome to your page {Siginname[index].name}");
+                        TeacherPage();
 
                     }
                     else if (Siginname[index].role == "student")
                     {
                         Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine($"Welcom to your page {Siginname[index].name}");
                         StudentMainPage();
 
                     }
@@ -74,9 +166,7 @@ namespace MyProject02
         }
         public static void StudentMainPage()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Welcome to Student page.");
-            Console.ResetColor();
+           
             try
             {
                 Console.WriteLine("1.Go to home work page (h)");
@@ -91,7 +181,8 @@ namespace MyProject02
                 else if(StudentInput == "m")
                 {
                     Console.Clear();
-                    Console.WriteLine("yes");
+                    StudentReadMassge();
+                    Console.WriteLine("it is massage box.");
                 }
                 else if(StudentInput == "e")
                 {
@@ -130,7 +221,7 @@ namespace MyProject02
                 string Letters = Console.ReadLine();
                 using (var Writer = new StreamWriter("Massage.txt"))
                 {
-                    Writer.WriteLine(TrainNumber + " " + DateLetter + " " + Letters);
+                    Writer.WriteLine(TrainNumber + "|" + DateLetter + "|" + Letters);
                 }
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Green;
