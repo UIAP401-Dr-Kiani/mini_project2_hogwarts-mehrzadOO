@@ -13,26 +13,10 @@ namespace MyProject02
 
         public static void TeacherChoosePage()
         {
-            try
-            {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Please write your username. ");
-                Console.ResetColor();
-                string UsernameInpute = Console.ReadLine();
-                List<AuthorizedPersons> Siginname = StudentFile();
-                int index = 0;
-                for (int i = 0; i<Siginname.Count; i++)
-                {
-                    if(UsernameInpute == Siginname[i].username)
-                    {
-                        index = i;
-                    }
-                }
-                var SiginameArray = Siginname.ToArray();
-                
+            string ReadUsernameTeacher = File.ReadAllText("usernameteacher.txt");
+            Console.WriteLine(ReadUsernameTeacher);
+            
 
-
-            }
             
         }
         public static void TeacherPage()
@@ -44,6 +28,7 @@ namespace MyProject02
                 if (TeacherInpute == "c")
                 {
                     Console.Clear();
+                    TeacherChoosePage();
 
                 }
                 else
@@ -110,7 +95,7 @@ namespace MyProject02
                 Console.Write("Password :");
                 string PasswordInpute = Console.ReadLine();
                 List<AuthorizedPersons> Siginname = StudentFile();
-                public int index = 0;
+                int index = 0;
                 int count = 0;
                 for (int i = 0; i < Siginname.Count; i++)
                 {
@@ -128,7 +113,13 @@ namespace MyProject02
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine($"Welcome to your page {Siginname[index].name}");
+                        using (var Writer = new StreamWriter("usernameteacher.txt"))
+                        {
+                            Writer.WriteLine(UsernameInpute);
+                        }
+                        
                         TeacherPage();
+
 
                     }
                     else if (Siginname[index].role == "student")
