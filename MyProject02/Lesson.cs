@@ -2,7 +2,8 @@ namespace MyProject02
 {
     public class Lesson
     {
-        private string Time;
+        private int TimeStart;
+        private int TImeEnd;
         private string numberOfStudents;
         private string Cpacity;
         private string presentationSemester;

@@ -6,18 +6,52 @@ using System.Security.Permissions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+
 namespace MyProject02
 {
     internal class Program
     {
 
+        static List<Teacher> TeacherLesson = new List<Teacher>();
         public static void TeacherChoosePage()
         {
             string ReadUsernameTeacher = File.ReadAllText("usernameteacher.txt");
-            Console.WriteLine(ReadUsernameTeacher);
-            
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"Please copmlete the filed{ReadUsernameTeacher}.");
+            Console.ResetColor();
+            try
+            {
+                Console.WriteLine("If you can teach SimultaneousTeaching write 'true',if you can not write 'false'.");
+                string simultaneousteaching = Console.ReadLine();
+                Boolean ChooseLesson = true;
 
-            
+               
+                Console.WriteLine("choose lesson !!:");
+                Console.WriteLine("chemistry(c) , magic(m) , occultims(o) , sport(s).");
+                Console.WriteLine("then choose your start and end time");
+                Console.Write("lesson :");
+                string Lesson = Console.ReadLine();
+                Console.Write("starttime :");
+                string StartTime = Console.ReadLine();
+                Console.Write("EndTime");
+                    
+                    
+
+
+
+
+
+
+
+                
+                
+            }
+            catch
+
+
+
+
+
         }
         public static void TeacherPage()
         {
