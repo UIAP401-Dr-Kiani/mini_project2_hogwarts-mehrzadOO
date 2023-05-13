@@ -8,6 +8,7 @@ namespace MyProject02
         public int Term { get; set; }
         public int HostelNumber { get; set; }
         public string Lesson { get; set; }
-        public string TeacherName { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
     }
 }

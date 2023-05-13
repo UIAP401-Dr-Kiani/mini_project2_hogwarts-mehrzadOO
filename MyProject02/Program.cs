@@ -15,6 +15,276 @@ namespace MyProject02
         private static List<Student> StudentChooseList = new List<Student>();
         static List<Teacher> TeacherLessonList = new List<Teacher>();
 
+        public static void PrintStudentLessonandTime()
+        {
+            string ResdUsernameStudent = File.ReadAllText("usernamestudent.txt");
+            foreach (var student in StudentChooseList)
+            {
+                if (student.Name == ResdUsernameStudent)
+                {
+                    Console.WriteLine($"Name lesson = {student.Lesson}");
+                    Console.WriteLine($"Start time : {student.StartTime} , End time : {student.EndTime}");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("*****************");
+                }
+            }
+        }
+        public static void PrintTeacher()
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Teacher and lesson you want to choose.");
+            Console.ResetColor();
+            foreach (var teacher in TeacherLessonList)
+            {
+                Console.WriteLine($"Teacher name :{teacher.Name}");
+                Console.WriteLine($"Lesson :{teacher.Lesson}");
+                Console.WriteLine($"Satrt time :{teacher.TimeLessonstart} , End time :{teacher.TimeLessonend}");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("**********************");
+                Console.ResetColor();
+            }
+        }
+
+        public static void ChooseLessonStudent()
+        {
+            string ResdUsernameStudent = File.ReadAllText("usernamestudent.txt");
+            int ChooseUnits = 0;
+            Random random = new Random();
+            try
+            {
+                while (true)
+                {
+                    Console.Write("Name lesson or exit?");
+                    string ChooseLesson = Console.ReadLine();
+                    if (ChooseLesson == "e")
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("you choosed your lesson.");
+                        Console.ResetColor();
+                        StudentMainPage();
+                    }
+                    else if (ChooseLesson == "s")
+                    {
+                        ChooseUnits = ChooseUnits + 1;
+                        if (ChooseUnits > 6)
+                        {
+                            ChooseUnits = ChooseUnits - 1;
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you can not choose units haigher than 6 units.");
+                            Console.ResetColor();
+                            StudentMainPage();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Time start?");
+                            string StartTime = Console.ReadLine();
+                            Console.WriteLine("Time end?");
+                            string EndTime = Console.ReadLine();
+                            Console.Write("Term?");
+                            int NumTerm = Convert.ToInt32(Console.ReadLine());
+                            int index = 0;
+                            foreach (var student in StudentChooseList)
+                            {
+                                if (student.Name == ResdUsernameStudent && student.StartTime == StartTime && student.EndTime == EndTime)
+                                {
+                                    index++;
+                                }
+                            }
+
+                            if (index == 1)
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you can not choose 2 lesson in one time.");
+                                Console.ResetColor();
+                                ChooseLessonStudent();
+                            }
+                            else
+                            {
+                                StudentChooseList.Add(new Student()
+                                {
+                                    Name = ResdUsernameStudent,
+                                    Lesson = "sport",
+                                    StartTime = StartTime,
+                                    EndTime = EndTime,
+                                    Term = NumTerm
+                                });
+                            }
+                            
+                        }
+                    }
+                    else if (ChooseLesson == "m")
+                    {
+                        ChooseUnits = ChooseUnits + 2;
+                        if (ChooseUnits > 6)
+                        {
+                            ChooseUnits = ChooseUnits - 2;
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you can not choose units higher than 6 units.");
+                            Console.ResetColor();
+                            StudentMainPage();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Time start?");
+                            string StartTime = Console.ReadLine();
+                            Console.WriteLine("Time end?");
+                            string EndTime = Console.ReadLine();
+                            Console.Write("Term?");
+                            int NumTerm = Convert.ToInt32(Console.ReadLine());
+                            int index = 0;
+                            foreach (var student in StudentChooseList)
+                            {
+                                if (student.Name == ResdUsernameStudent && student.StartTime == StartTime && student.EndTime == EndTime)
+                                {
+                                    index++;
+                                }
+                            }
+
+                            if (index == 1)
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you can not choose 2 lesson in one time.");
+                                Console.ResetColor();
+                                ChooseLessonStudent();
+                            }
+                            else
+                            {
+                                StudentChooseList.Add(new Student()
+                                {
+                                    Name = ResdUsernameStudent,
+                                    Lesson = "sport",
+                                    StartTime = StartTime,
+                                    EndTime = EndTime,
+                                    Term = NumTerm
+                                });
+                            }
+                        }
+                    }
+                    else if (ChooseLesson == "c")
+                    {
+                        ChooseUnits = ChooseUnits + 3;
+                        if (ChooseUnits > 6)
+                        {
+                            ChooseUnits = ChooseUnits - 3;
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you can not choose units haigher than 6 units.");
+                            Console.ResetColor();
+                            StudentMainPage();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Time start?");
+                            string StartTime = Console.ReadLine();
+                            Console.WriteLine("Time end?");
+                            string EndTime = Console.ReadLine();
+                            Console.Write("Term?");
+                            int NumTerm = Convert.ToInt32(Console.ReadLine());
+                            int index = 0;
+                            foreach (var student in StudentChooseList)
+                            {
+                                if (student.Name == ResdUsernameStudent && student.StartTime == StartTime && student.EndTime == EndTime)
+                                {
+                                    index++;
+                                }
+                            }
+
+                            if (index == 1)
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you can not choose 2 lesson in one time.");
+                                Console.ResetColor();
+                                ChooseLessonStudent();
+                            }
+                            else
+                            {
+                                StudentChooseList.Add(new Student()
+                                {
+                                    Name = ResdUsernameStudent,
+                                    Lesson = "sport",
+                                    StartTime = StartTime,
+                                    EndTime = EndTime,
+                                    Term = NumTerm
+                                });
+                            }
+                        }
+                    }
+                    else if (ChooseLesson == "o")
+                    {
+                        ChooseUnits = ChooseUnits + 3;
+                        if (ChooseUnits > 6)
+                        {
+                            ChooseUnits = ChooseUnits - 3;
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you can not choose units haigher than 6 units.");
+                            Console.ResetColor();
+                            StudentMainPage();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Time start?");
+                            string StartTime = Console.ReadLine();
+                            Console.WriteLine("Time end?");
+                            string EndTime = Console.ReadLine();
+                            Console.Write("Term?");
+                            int NumTerm = Convert.ToInt32(Console.ReadLine());
+                            int index = 0;
+                            foreach (var student in StudentChooseList)
+                            {
+                                if (student.Name == ResdUsernameStudent && student.StartTime == StartTime && student.EndTime == EndTime)
+                                {
+                                    index++;
+                                }
+                            }
+
+                            if (index == 1)
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you can not choose 2 lesson in one time.");
+                                Console.ResetColor();
+                                ChooseLessonStudent();
+                            }
+                            else
+                            {
+                                StudentChooseList.Add(new Student()
+                                {
+                                    Name = ResdUsernameStudent,
+                                    Lesson = "sport",
+                                    StartTime = StartTime,
+                                    EndTime = EndTime,
+                                    Term = NumTerm
+                                });
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("you enter wrong key please try again.");
+                        Console.ResetColor();
+                        ChooseLessonStudent();
+                    }
+
+                }
+            }
+            catch (FormatException)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("you enter wrong key please try again.");
+                Console.ResetColor();
+                ChooseLessonStudent();
+            }
+        }
         public static void StudentChoosPage()
         {
             string ResdUsernameStudent = File.ReadAllText("usernamestudent.txt");
@@ -23,25 +293,9 @@ namespace MyProject02
             Console.WriteLine("Name of lesson (Units , key to choose) :");
             Console.WriteLine("sport (1 , s) , magic(2 , m) , chemistry(3 , c) ,occultism(3 , o)");
             Console.WriteLine("Exit(e)");
-            try
-            {
-                while (true)
-                {
-                    Console.Write("Name lesson or exit?");
-                    string ChooseLesson = Console.ReadLine();
-                    Console.Write("Name of theacher?");
-                    string NameTheacher = Console.ReadLine();
-                    Console.Write("Term?");
-                    string NumTerm = Console.ReadLine();
-                    
-
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+            Console.WriteLine("List of teacher :");
+            PrintTeacher();
+            ChooseLessonStudent();
         }
         public static void TeacherChooseLessoFales()
         {
@@ -347,6 +601,7 @@ namespace MyProject02
                     }
                     else
                     {
+                        Console.Clear();
                         StudentChoosPage();
                     }
                 }
@@ -432,6 +687,7 @@ namespace MyProject02
         public static void TeacherPage()
         {
             Console.WriteLine("1.Choose lesson and time(c)");
+            Console.WriteLine("2.Exit(e)");
             try
             {
                 string TeacherInpute = Console.ReadLine();
@@ -440,6 +696,11 @@ namespace MyProject02
                     Console.Clear();
                     TeacherChoosePage();
 
+                }
+                else if (TeacherInpute == "e")
+                {
+                    Console.Clear();
+                    MainPage();
                 }
                 else
                 {
@@ -589,6 +850,13 @@ namespace MyProject02
                     Console.Clear();
                     StudentReadMassge();
                     Console.WriteLine("it is massage box.");
+                }
+                else if (StudentInput == "c")
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("This is your curriculum =>");
+                    PrintStudentLessonandTime();
                 }
                 else if(StudentInput == "e")
                 {
