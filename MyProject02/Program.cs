@@ -15,6 +15,10 @@ namespace MyProject02
         private static List<Student> StudentChooseList = new List<Student>();
         static List<Teacher> TeacherLessonList = new List<Teacher>();
 
+        public static void OccultismProj()
+        {
+            
+        }
         public static void PrintStudentLessonandTime()
         {
             string ResdUsernameStudent = File.ReadAllText("usernamestudent.txt");
@@ -78,9 +82,9 @@ namespace MyProject02
                         }
                         else
                         {
-                            Console.WriteLine("Time start?");
+                            Console.Write("Time start?");
                             string StartTime = Console.ReadLine();
-                            Console.WriteLine("Time end?");
+                            Console.Write("Time end?");
                             string EndTime = Console.ReadLine();
                             Console.Write("Term?");
                             int NumTerm = Convert.ToInt32(Console.ReadLine());
@@ -129,9 +133,9 @@ namespace MyProject02
                         }
                         else
                         {
-                            Console.WriteLine("Time start?");
+                            Console.Write("Time start?");
                             string StartTime = Console.ReadLine();
-                            Console.WriteLine("Time end?");
+                            Console.Write("Time end?");
                             string EndTime = Console.ReadLine();
                             Console.Write("Term?");
                             int NumTerm = Convert.ToInt32(Console.ReadLine());
@@ -157,7 +161,7 @@ namespace MyProject02
                                 StudentChooseList.Add(new Student()
                                 {
                                     Name = ResdUsernameStudent,
-                                    Lesson = "sport",
+                                    Lesson = "magic",
                                     StartTime = StartTime,
                                     EndTime = EndTime,
                                     Term = NumTerm
@@ -179,9 +183,9 @@ namespace MyProject02
                         }
                         else
                         {
-                            Console.WriteLine("Time start?");
+                            Console.Write("Time start?");
                             string StartTime = Console.ReadLine();
-                            Console.WriteLine("Time end?");
+                            Console.Write("Time end?");
                             string EndTime = Console.ReadLine();
                             Console.Write("Term?");
                             int NumTerm = Convert.ToInt32(Console.ReadLine());
@@ -207,7 +211,7 @@ namespace MyProject02
                                 StudentChooseList.Add(new Student()
                                 {
                                     Name = ResdUsernameStudent,
-                                    Lesson = "sport",
+                                    Lesson = "chemistry",
                                     StartTime = StartTime,
                                     EndTime = EndTime,
                                     Term = NumTerm
@@ -229,9 +233,9 @@ namespace MyProject02
                         }
                         else
                         {
-                            Console.WriteLine("Time start?");
+                            Console.Write("Time start?");
                             string StartTime = Console.ReadLine();
-                            Console.WriteLine("Time end?");
+                            Console.Write("Time end?");
                             string EndTime = Console.ReadLine();
                             Console.Write("Term?");
                             int NumTerm = Convert.ToInt32(Console.ReadLine());
@@ -257,7 +261,7 @@ namespace MyProject02
                                 StudentChooseList.Add(new Student()
                                 {
                                     Name = ResdUsernameStudent,
-                                    Lesson = "sport",
+                                    Lesson = "occultism",
                                     StartTime = StartTime,
                                     EndTime = EndTime,
                                     Term = NumTerm
@@ -784,6 +788,7 @@ namespace MyProject02
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine($"Welcome to your page {Siginname[index].name}");
+                        Console.ResetColor();
                         using (var Writer = new StreamWriter("usernameteacher.txt"))
                         {
                             Writer.WriteLine(UsernameInpute);
@@ -798,6 +803,7 @@ namespace MyProject02
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine($"Welcom to your page {Siginname[index].name}");
+                        Console.ResetColor();
                         using (var Writer = new StreamWriter("usernamestudent.txt"))
                         {
                             Writer.WriteLine(UsernameInpute);
@@ -827,7 +833,53 @@ namespace MyProject02
         }
         public static void StudentHomeWorkPage()
         {
-           
+            string ResdUsernameStudent = File.ReadAllText("usernamestudent.txt");
+            foreach (var student in StudentChooseList)
+            {
+                if (student.Name == ResdUsernameStudent && student.Lesson == "occultims")
+                {
+                    Console.WriteLine("you have occultims proj.For do it press (o).");
+                }
+
+                if (student.Name == ResdUsernameStudent && student.Lesson == "chemistry")
+                {
+                    Console.WriteLine("you have chemistry proj.For do it press (c).");
+                }
+            }
+            Console.WriteLine("Exit (e)");
+            try
+            {
+                string StudentProjIpute = Console.ReadLine();
+                if (StudentProjIpute == "o")
+                {
+                    Console.Clear();
+                }
+                else if (StudentProjIpute == "c")
+                {
+                    Console.Clear();
+                }
+                else if (StudentProjIpute == "e")
+                {
+                    Console.Clear();
+                    StudentMainPage();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("You enterned wrong key.Please try again.");
+                    Console.ResetColor();
+                    StudentHomeWorkPage();
+                }
+            }
+            catch (FormatException)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You enterned wrong key.Please try again.");
+                Console.ResetColor();
+                StudentHomeWorkPage();
+            }
 
         }
         public static void StudentMainPage()
