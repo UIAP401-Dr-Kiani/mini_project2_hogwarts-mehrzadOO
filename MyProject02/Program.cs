@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Permissions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -12,11 +13,408 @@ namespace MyProject02
 {
     internal class Program
     {
-        private static List<Student> StudentChooseList = new List<Student>();
-        static List<Teacher> TeacherLessonList = new List<Teacher>();
+        static List<Student> StudentChooseList = new List<Student>();
+        static List<Teacher> TeacherLessonList = new List<Teacher>(); 
+        static List<exam> ExamStudent = new List<exam>();
+        static List<exercise> examTeacher = new List<exercise>();
 
-        public static void OccultismProj()
+        public static void PrintOccultismProjTeacher()
         {
+            for (int i = 0; i < examTeacher.Count; i++)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"Teacher UserName : {examTeacher[i].UserNameTeacher}");
+                for (int j = 0; j < examTeacher[i].ExamTeacher.Count; j++)
+                {
+                    
+                    Console.WriteLine($"Name Plant : {examTeacher[i].ExamTeacher[j].Name} , Number : {examTeacher[i].ExamTeacher[j].Count}");
+                }
+                Console.ResetColor();
+            }
+            
+        }
+        public static void ChoosePlantTeacher()
+        {
+            exercise t1 = new exercise();
+            string ReadUserNameTeacher = Console.ReadLine();
+            t1.UserNameTeacher = ReadUserNameTeacher;
+            t1.ExamTeacher = new List<Plant>();
+            Plant p1 = new Plant(); 
+            Plant p2 = new Plant();
+            Plant p3 = new Plant();
+            Plant p4 = new Plant();
+            Plant p5 = new Plant();
+            Plant p6 = new Plant();
+            try
+            {
+                while (true)
+                {
+                    
+                    Console.Write("what type do you want?");
+                    string TypeInpute = Console.ReadLine();
+                    Console.Write("number? 1or2? ");
+                    int NumberType = Convert.ToInt32(Console.ReadLine());
+                    switch (TypeInpute)
+                    {
+                        case "1":
+                            if (NumberType == 1)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p1.Count = 1;
+                                    p1.Name = PlantName.Brambles;
+                                    t1.ExamTeacher.Add(p1);
+                                }
+                                
+                            }
+                            else if (NumberType == 2)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p1.Count = 2;
+                                    p1.Name = PlantName.Brambles;
+                                    t1.ExamTeacher.Add(p1);
+                                }
+                               
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you want higher plant .please try again. ");
+                                Console.ResetColor();
+                                ChoosePlantTeacher();
+                            }
+
+                            break;
+                        case "2":
+                            if (NumberType == 1)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p2.Count = 1;
+                                    p2.Name = PlantName.Catus;
+                                    t1.ExamTeacher.Add(p2);
+                                }
+                                
+                            }
+                            else if (NumberType == 2)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p2.Count = 2;
+                                    p2.Name = PlantName.Catus;
+                                    t1.ExamTeacher.Add(p2);   
+                                }
+                                
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you want higher plant .please try again. ");
+                                Console.ResetColor();
+                                ChoosePlantTeacher();
+                            }
+
+                            break;
+                        case "3":
+                            if (NumberType == 1)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p3.Count = 1;
+                                    p3.Name = PlantName.Corn;
+                                    t1.ExamTeacher.Add(p3);
+                                }
+                                
+                            }
+                            else if (NumberType == 2)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p3.Count = 2;
+                                    p3.Name = PlantName.Catus;
+                                    t1.ExamTeacher.Add(p3);   
+                                }
+                                
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you want higher plant .please try again. ");
+                                Console.ResetColor();
+                                ChoosePlantTeacher();
+                            }
+
+                            break;
+                        case "4":
+                            if (NumberType == 1)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p4.Count = 1;
+                                    p4.Name = PlantName.Flowers;
+                                    t1.ExamTeacher.Add(p4);
+                                }
+                                
+                            }
+                            else if (NumberType == 2)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p4.Count = 2;
+                                    p4.Name = PlantName.Flowers;
+                                    t1.ExamTeacher.Add(p4);
+                                }
+                                
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you want higher plant .please try again. ");
+                                Console.ResetColor();
+                                ChoosePlantTeacher();
+                            }
+
+                            break;
+                        case "5":
+                            if (NumberType == 1)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p5.Count = 1;
+                                    p5.Name = PlantName.Mushroom;
+                                    t1.ExamTeacher.Add(p5);
+                                }
+                                
+                            }
+                            else if (NumberType == 2)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p5.Count = 2;
+                                    p5.Name = PlantName.Mushroom;
+                                    t1.ExamTeacher.Add(p5);
+                                }
+                                
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you want higher plant .please try again. ");
+                                Console.ResetColor();
+                                ChoosePlantTeacher();
+                            }
+
+                            break;
+                        case "6":
+                            if (NumberType == 1)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p6.Count = 1;
+                                    p6.Name = PlantName.Grass;
+                                    t1.ExamTeacher.Add(p6);
+                                }
+                                
+                            }
+                            else if (NumberType == 2)
+                            {
+                                if (t1.ExamTeacher.Count >= 4)
+                                {
+                                    Console.Clear();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    Console.WriteLine("you choosed 4 plant you want.");
+                                    Console.ResetColor();
+                                    TeacherPage();
+                                }
+                                else
+                                {
+                                    p6.Count = 2;
+                                    p6.Name = PlantName.Grass;
+                                    t1.ExamTeacher.Add(p6);
+                                }
+                                
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("you want higher plant .please try again. ");
+                                Console.ResetColor();
+                                ChoosePlantTeacher();
+                            }
+
+                            break;
+                        case "e":
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.WriteLine("you added the exam.");
+                            examTeacher.Add(new exercise()
+                            {
+                                UserNameTeacher = t1.UserNameTeacher,
+                                ExamTeacher = t1.ExamTeacher
+                            });
+                            TeacherPage();
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you enter wrong key.please try again.");
+                            Console.ResetColor();
+                            break;
+                    }
+                }
+            }
+            catch (FormatException)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("you enter wrong key.please try again.");
+                Console.ResetColor();
+                
+            }
+            
+           
+        }
+        public static void OccultismProjStudent()
+        {
+            Console.WriteLine("so you must find plant that the teacher want :");
+            PrintOccultismProjTeacher();
+        }
+        public static void OccultismProjTeacher()
+        {
+            List<AuthorizedPersons> Siginname = StudentFile();
+            exercise t1 = new exercise();
+            t1.ExamTeacher = new List<Plant>();
+            Console.WriteLine("You can ask Student 4 type plant.");
+            Console.WriteLine("you can choose from under list :");
+            Console.WriteLine("Brambles (press1) , Catus (press2) , Corn (press3) , Grass (press4) , Mushroom (press5) , Flower (press6) , exit(press e)");
+            Console.Write("At first please write your username for make an exam :");
+            try
+            {
+                int index = 0;
+                string ReadUserNameTeacher = Console.ReadLine();
+                foreach (var person in Siginname)
+                {
+                    if (person.role == "teacher" && person.username == ReadUserNameTeacher)
+                    {
+                        index++;
+                    }
+                }
+
+                if (index == 1) 
+                {
+                    ChoosePlantTeacher();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("you enter wrong username.please try again.");
+                    OccultismProjTeacher();
+                }
+                
+            }
+            catch (FormatException)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("you enter wrong username.please try again.");
+                OccultismProjTeacher();
+            }
             
         }
         public static void PrintStudentLessonandTime()
@@ -40,7 +438,7 @@ namespace MyProject02
             Console.ResetColor();
             foreach (var teacher in TeacherLessonList)
             {
-                Console.WriteLine($"Teacher name :{teacher.Name}");
+                Console.WriteLine($"Teacher name :{teacher.username}");
                 Console.WriteLine($"Lesson :{teacher.Lesson}");
                 Console.WriteLine($"Satrt time :{teacher.TimeLessonstart} , End time :{teacher.TimeLessonend}");
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -309,7 +707,7 @@ namespace MyProject02
                 while (true)
                     {
                         Console.WriteLine("choose lesson :");
-                        Console.WriteLine("Q1 : chemistry(c) , magic(m) , occultims(o) , sport(s) , exit(e).");
+                        Console.WriteLine("Q1 : chemistry(c) , magic(m) , occultism(o) , sport(s) , exit(e).");
                         Console.WriteLine("Q2 : then choose your start and end time");
                         Console.Write("Please answer Q1 :");
                         string AnswerQ1 = Console.ReadLine();
@@ -348,7 +746,7 @@ namespace MyProject02
                             {
                                 TeacherLessonList.Add(new Teacher
                                 {
-                                    Name = ReadUsernameTeacher,
+                                    username = ReadUsernameTeacher,
                                     SimultaneousTeaching = true,
                                     Lesson = "Chemistry",
                                     TimeLessonstart = StartTime,
@@ -384,7 +782,7 @@ namespace MyProject02
                             {
                                 TeacherLessonList.Add(new Teacher
                                 {
-                                    Name = ReadUsernameTeacher,
+                                    username = ReadUsernameTeacher,
                                     SimultaneousTeaching = true,
                                     Lesson = "magic",
                                     TimeLessonstart = StartTime,
@@ -420,7 +818,7 @@ namespace MyProject02
                             {
                                 TeacherLessonList.Add(new Teacher
                                 {
-                                    Name = ReadUsernameTeacher,
+                                    username = ReadUsernameTeacher,
                                     SimultaneousTeaching = true,
                                     Lesson = "occultism",
                                     TimeLessonstart = StartTime,
@@ -456,7 +854,7 @@ namespace MyProject02
                             {
                                 TeacherLessonList.Add(new Teacher
                                 {
-                                    Name = ReadUsernameTeacher,
+                                    username = ReadUsernameTeacher,
                                     SimultaneousTeaching = true,
                                     Lesson = "sport",
                                     TimeLessonstart = StartTime,
@@ -492,7 +890,7 @@ namespace MyProject02
                     {
                         Console.Clear();
                         Console.WriteLine("choose lesson :");
-                        Console.WriteLine("Q1 : chemistry(c) , magic(m) , occultims(o) , sport(s) , exit(e).");
+                        Console.WriteLine("Q1 : chemistry(c) , magic(m) , occultism(o) , sport(s) , exit(e).");
                         Console.WriteLine("Q2 : then choose your start and end time");
                         Console.WriteLine("Times : 8-10 , 10-12 , 12-14 , 14-16 , 16-18");
                         Console.Write("Please answer Q1 :");
@@ -513,7 +911,7 @@ namespace MyProject02
                             string EndTime = Console.ReadLine();
                             TeacherLessonList.Add(new Teacher
                             {
-                                Name = ReadUsernameTeacher,
+                                username = ReadUsernameTeacher,
                                 SimultaneousTeaching = true,
                                 Lesson = "Chemistry",
                                 TimeLessonstart = StartTime,
@@ -528,7 +926,7 @@ namespace MyProject02
                             string EndTime = Console.ReadLine();
                             TeacherLessonList.Add(new Teacher
                             {
-                                Name= ReadUsernameTeacher,
+                                username = ReadUsernameTeacher,
                                 SimultaneousTeaching = true,
                                 Lesson = "magic",
                                 TimeLessonstart = StartTime,
@@ -543,7 +941,7 @@ namespace MyProject02
                             string EndTime = Console.ReadLine();
                             TeacherLessonList.Add(new Teacher
                             {
-                                Name = ReadUsernameTeacher,
+                                username = ReadUsernameTeacher,
                                 SimultaneousTeaching = true,
                                 Lesson = "occultism",
                                 TimeLessonstart = StartTime,
@@ -558,6 +956,7 @@ namespace MyProject02
                             string EndTime = Console.ReadLine();
                             TeacherLessonList.Add(new Teacher
                             {
+                                username = ReadUsernameTeacher,
                                 SimultaneousTeaching = true,
                                 Lesson = "sport",
                                 TimeLessonstart = StartTime,
@@ -690,7 +1089,17 @@ namespace MyProject02
         }
         public static void TeacherPage()
         {
+            string ReadUsernameTeacher = File.ReadAllText("usernameteacher.txt");
             Console.WriteLine("1.Choose lesson and time(c)");
+            foreach (var teacher in TeacherLessonList)
+            {
+                if (teacher.username == ReadUsernameTeacher && teacher.Lesson == "occultism")
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("+ if you want to add project for occultims press (o)");
+                    Console.ResetColor();
+                }
+            }
             Console.WriteLine("2.Exit(e)");
             try
             {
@@ -700,6 +1109,11 @@ namespace MyProject02
                     Console.Clear();
                     TeacherChoosePage();
 
+                }
+                else if (TeacherInpute == "o")
+                {
+                    Console.Clear();
+                    OccultismProjTeacher();
                 }
                 else if (TeacherInpute == "e")
                 {
@@ -836,7 +1250,7 @@ namespace MyProject02
             string ResdUsernameStudent = File.ReadAllText("usernamestudent.txt");
             foreach (var student in StudentChooseList)
             {
-                if (student.Name == ResdUsernameStudent && student.Lesson == "occultims")
+                if (student.Name == ResdUsernameStudent && student.Lesson == "occultism")
                 {
                     Console.WriteLine("you have occultims proj.For do it press (o).");
                 }
@@ -853,6 +1267,7 @@ namespace MyProject02
                 if (StudentProjIpute == "o")
                 {
                     Console.Clear();
+                    OccultismProjStudent();
                 }
                 else if (StudentProjIpute == "c")
                 {
